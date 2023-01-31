@@ -1,0 +1,290 @@
+html, body {
+    height: 100%;
+    font-family: Nunito, sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #f4f7f9;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.hoverable:hover {
+    opacity: 0.7;
+}
+
+.red-text {
+    color: #f44336 !important;
+}
+
+.page-wrapper {
+    padding-top: 20px;
+}
+
+.card.fj-card .card-body-wrapper {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 2px 5px 25px rgba(0, 0, 0, 0.15);
+    min-height: 280px;
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+.card.fj-card .card-body {
+    padding: 15px 0px 0px;
+}
+
+.card.fj-card .card-body .card-title {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.card.fj-card .card-date {
+    font-size: 13px;
+}
+
+.card.fj-card .card-main-title {
+    font-size: 22px;
+}
+
+.card.fj-card .card-header {
+    background-color: transparent;
+    padding: 0px 0px 15px;
+}
+
+.card.fj-card .card-header img {
+    --size: 45px;
+    background-color: #fff;
+    border: 1px solid #464646;
+    border-radius: 50%;
+    top: calc(-1 * (var(--size) / 2));
+    width: var(--size);
+    height: var(--size);
+}
+
+.card.fj-card .card-button {
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-family: var(--font-family-primary);
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.15rem;
+    padding-top: 1.5rem !important;
+    /* @TODO temp !!!*/
+    padding: 0.75rem 1.5rem;
+    background-color: #63696e;
+    border-color: #575c60;
+    box-shadow: 0 5px 0 #303336;
+    bottom: -45px;
+    position: absolute;
+    right: 1.5rem;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.card.fj-card .card-button:hover {
+    background-color: #7c8288;
+    border-color: #63696e;
+    -webkit-transform: translateY(0.25rem);
+    transform: translateY(0.25rem);
+}
+
+.card.fj-card.fj-card-list .card-body-wrapper {
+    min-height: 180px;
+}
+
+.card.fj-card.fj-card-list .card-header {
+    background-color: transparent;
+    padding-bottom: 5px;
+}
+
+.card.fj-card.placeholder {
+    color: transparent;
+}
+
+.card.fj-card.placeholder .image-placeholder {
+    height: 200px;
+    width: 100%;
+    background-color: #bebebe;
+}
+
+.card.fj-card.placeholder .card-title, .card.fj-card.placeholder .card-text, .card.fj-card.placeholder .card-date {
+    background-color: #bebebe;
+}
+
+.card {
+    margin-bottom: 60px;
+}
+
+.fj-navbar.fj-nav-base {
+    width: 100%;
+    padding: 20px 0px;
+}
+
+.fj-navbar.fj-nav-base .fj-navbar-brand {
+    color: black;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.fj-navbar.fj-nav-base .fj-navbar-item {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.fj-navbar.fj-nav-base .fj-navbar-link {
+    color: black;
+    letter-spacing: 0.8px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.fj-navbar.fj-nav-base .fj-navbar-link.active {
+    color: #dba919;
+}
+
+.fj-navbar.fj-nav-base .fj-navbar-link:hover, .fj-navbar.fj-nav-base .fj-navbar-link:focus {
+    color: #dba919;
+}
+
+.fj-navbar.fj-nav-base .fj-dropdown-menu .fj-dropdown-item {
+    color: #4e4e4e;
+}
+
+.fj-navbar.fj-nav-base .fj-dropdown-menu .fj-dropdown-item.active {
+    color: #dba919;
+}
+
+.fj-navbar.fj-nav-base .fj-dropdown-menu .fj-dropdown-toggle {
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.fj-navbar.fj-nav-base.fj-nav-default {
+    padding: 30px;
+    background-color: black !important;
+}
+
+.bg-transparent.menu-open {
+    background-color: #2c3e50 !important;
+}
+
+.bg-transparent.menu-close {
+    transition: 1s;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+}
+
+.card-header-title {
+    margin-bottom: 0;
+}
+
+.hljs {
+    padding: 20px 20px 10px;
+    border-radius: 10px;
+}
+
+.code-filename, .image-alt {
+    opacity: 0.6;
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.blog-image {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.image-alt {
+    margin-top: 3px;
+}
+
+.blog-detail-page {
+    font-size: 19px;
+}
+
+.blog-detail-page .blog-detail-header .lead {
+    font-size: 17px;
+}
+
+.blog-detail-page .blog-detail-header-title {
+    font-size: 52px;
+}
+
+.admin-intro .welcome-text {
+    font-size: 18px;
+}
+
+.dark .card.fj-card {
+    background-color: #232129;
+    transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
+}
+
+.dark .card.fj-card .card-body-wrapper {
+    background-color: #232129;
+    transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
+}
+
+.dark .card.fj-card .card-button {
+    background-color: #9b5f5f;
+}
+
+.dark .fj-navbar.fj-nav-base {
+    width: 100%;
+    padding: 20px 0px;
+}
+
+.dark .fj-navbar.fj-nav-base .fj-navbar-brand {
+    color: #fff;
+}
+
+.dark .fj-navbar.fj-nav-base .fj-navbar-link {
+    color: #fff;
+}
+
+.day-night-toggle.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+    background-color: black;
+}
+
+.day-night-toggle.react-toggle .react-toggle-track {
+    background-color: black;
+}
+
+.day-night-toggle.react-toggle .react-toggle-track:hover {
+    background-color: black;
+}
+
+.day-night-toggle.react-toggle .react-toggle-track-x, .day-night-toggle.react-toggle .react-toggle-track-check {
+    right: 8px;
+    width: 15px;
+    height: 15px;
+}
+
+.day-night-toggle.react-toggle .react-toggle-track-x svg, .day-night-toggle.react-toggle .react-toggle-track-check svg {
+    width: 100%;
+    height: 100%;
+}
+
+.page-footer {
+    padding: 40px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.page-footer a {
+    color: #63696e;
+}

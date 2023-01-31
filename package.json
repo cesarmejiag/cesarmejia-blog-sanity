@@ -1,0 +1,11 @@
+{
+  "name": "cesar-blog-sanity",
+  "private": true,
+  "workspaces": [
+    "studio",
+    "web"
+  ],
+  "devDependencies": {
+    "lerna": "^6.4.1"
+  }
+}
