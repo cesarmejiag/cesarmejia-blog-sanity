@@ -17,11 +17,16 @@ export default function Home({ blogs }) {
         {blogs.map(({ title, subtitle, date, coverImage, slug, author }) => (
           <Col key={slug} md="4">
             <Item
+              slug={slug}
               author={author}
               title={title}
               subtitle={subtitle}
               date={date}
               coverImage={coverImage}
+              link={{
+                href: "/blogs/[slug]",
+                as: `/blogs/${slug}`,
+              }}
             />
           </Col>
         ))}

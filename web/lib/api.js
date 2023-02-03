@@ -13,3 +13,9 @@ export async function getAllBlogs() {
     },
   }`);
 }
+
+export async function getBlogBySlug(slug) {
+  return await client.fetch(`*[_type == "blog" && slug.current == $slug][0]`, {
+    slug,
+  });
+}

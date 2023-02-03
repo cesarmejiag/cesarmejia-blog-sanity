@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
+import Link from "next/link";
 
 const formatDate = (date) => new Date(date).toLocaleString();
 
-const Item = ({ title, subtitle, date, coverImage, author }) => {
+const Item = ({ slug, title, subtitle, date, coverImage, author, link }) => {
   return (
     <Card className={`fj-card`}>
       <div className="card-body-wrapper">
@@ -19,7 +20,7 @@ const Item = ({ title, subtitle, date, coverImage, author }) => {
           )}
           <div>
             <Card.Title className="font-weight-bold mb-1">
-              {author?.name || 'Anonymous'}
+              {author?.name || "Anonymous"}
             </Card.Title>
             <Card.Text className="card-date">{date}</Card.Text>
           </div>
@@ -32,7 +33,9 @@ const Item = ({ title, subtitle, date, coverImage, author }) => {
           <Card.Text>{subtitle}</Card.Text>
         </Card.Body>
       </div>
-      <a className="card-button">Read More</a>
+      <Link {...link} legacyBehavior>
+        <a className="card-button">Read More</a>
+      </Link>
     </Card>
   );
 };

@@ -1,6 +1,9 @@
 {
   "name": "cesar-blog-sanity",
   "private": true,
+  "scripts": {
+    "dev": "lerna run dev --parallel"
+  },
   "workspaces": [
     "studio",
     "web"

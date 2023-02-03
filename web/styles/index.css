@@ -136,6 +136,11 @@ html, body {
     font-weight: bold;
 }
 
+.fj-navbar.fj-nav-base .fj-navbar-brand a {
+    color: black;
+    font-weight: 900;
+}
+
 .fj-navbar.fj-nav-base .fj-navbar-item {
     margin-left: 10px;
     margin-right: 10px;
