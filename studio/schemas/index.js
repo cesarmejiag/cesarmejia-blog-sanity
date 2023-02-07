@@ -38,6 +38,45 @@ export const schemaTypes = [
         name: 'coverImage',
         type: 'image',
         title: 'Cover Image',
+        fields: [
+          {
+            type: 'text',
+            name: 'alt',
+            title: 'Alternative Text',
+          },
+        ],
+      },
+      {
+        name: 'content',
+        title: 'Content',
+        type: 'array',
+        of: [
+          {
+            type: 'block',
+          },
+          {
+            type: 'image',
+            fields: [
+              {
+                type: 'text',
+                name: 'alt',
+                title: 'Alternative Text',
+                options: {
+                  isHighlighted: true,
+                },
+              },
+            ],
+            options: {
+              hotspot: true,
+            },
+          },
+          {
+            type: 'code',
+            options: {
+              withFilename: true,
+            },
+          },
+        ],
       },
       {
         name: 'date',
