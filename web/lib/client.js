@@ -8,6 +8,7 @@ const options = {
   // cached data
   // use Cdn === false, give you little bit slower response, but
   // latest data
+  apiVersion: "2023-02-07",
 };
 
 export default sanityClient(options);

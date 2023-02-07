@@ -1,10 +1,29 @@
+import { Row, Col } from "react-bootstrap";
 import Layout from "@/components/Layout";
+import PreviewAlert from "@/components/PreviewAlert";
+import BlogHeader from "@/components/BlogHeader";
+import BlogContent from "@/components/BlogContent";
 import { getAllBlogs, getBlogBySlug } from "@/lib/api";
+import { urlFor } from "@/lib/api";
+import moment from "moment";
 
 const BlogDetail = ({ blog }) => {
   return (
-    <Layout>
-      <h1>{blog.title}</h1>
+    <Layout className="blog-detail-page">
+      <Row>
+        <Col md={{ span: 10, offset: 1 }}>
+          {false && <PreviewAlert />}
+          <BlogHeader
+            title={blog.title}
+            subtitle={blog.subtitle}
+            coverImage={urlFor(blog.coverImage).height(600).url()}
+            author={blog.author}
+            date={moment(blog.date).format("LL")}
+          />
+          <hr />
+          {blog.content && <BlogContent content={blog.content} />}
+        </Col>
+      </Row>
     </Layout>
   );
 };
