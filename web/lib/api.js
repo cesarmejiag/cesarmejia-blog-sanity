@@ -8,7 +8,7 @@ export async function getAllBlogs() {
     title,
     subtitle,
     "slug": slug.current,
-    "coverImage": coverImage.asset->url,
+    coverImage,
     date,
     "author": author->{
       name,

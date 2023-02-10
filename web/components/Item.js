@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
 import Link from "next/link";
+import { urlFor } from "@/lib/api";
 
 const formatDate = (date) => new Date(date).toLocaleString();
 
@@ -26,7 +27,14 @@ const Item = ({ slug, title, subtitle, date, coverImage, author, link }) => {
           </div>
         </Card.Header>
         <div className="view overlay">
-          <Card.Img src={coverImage} alt={title} />
+          <Card.Img
+            src={urlFor(coverImage)
+              .height(300)
+              .crop("center")
+              .fit("clip")
+              .url()}
+            alt={title}
+          />
         </div>
         <Card.Body>
           <Card.Title className="card-main-title">{title}</Card.Title>
@@ -44,7 +52,7 @@ Item.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   date: PropTypes.string,
-  coverImage: PropTypes.string,
+  coverImage: PropTypes.object,
   author: PropTypes.shape({
     avatar: PropTypes.string,
     name: PropTypes.string,

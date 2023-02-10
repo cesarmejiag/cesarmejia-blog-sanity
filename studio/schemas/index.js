@@ -45,6 +45,9 @@ export const schemaTypes = [
             title: 'Alternative Text',
           },
         ],
+        options: {
+          hotspot: true,
+        },
       },
       {
         name: 'content',
