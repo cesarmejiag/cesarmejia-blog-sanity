@@ -5,6 +5,21 @@ export const schemaTypes = [
     title: 'Author',
     fields: [
       {
+        name: 'slug',
+        title: 'Slug',
+        type: 'slug',
+        options: {
+          source: 'name',
+          slugify: (input) =>
+            input
+              .trim()
+              .toLowerCase()
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .replace(/\s+/g, '-'),
+        },
+      },
+      {
         name: 'name',
         title: 'Name',
         type: 'string',

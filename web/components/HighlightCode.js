@@ -6,14 +6,16 @@ export default function HighlightCode({ children, language }) {
   const code = createRef();
 
   useEffect(() => {
-    highlight.highlightBlock(findDOMNode(code.current));
+    highlight.highlightBlock(code.current);
   }, []);
 
   return (
     <pre>
-      <code ref={code} className={language}>
-        {children}
-      </code>
+      <code
+        ref={code}
+        className={language}
+        dangerouslySetInnerHTML={{ __html: children }}
+      ></code>
     </pre>
   );
 }
