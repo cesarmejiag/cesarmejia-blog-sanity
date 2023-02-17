@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const LIST_VIEW_ICONS = ["list", "table-cells"];
 
 function FilteringMenu({ filter, onChange }) {
+  
   return (
     <div className="filtering-menu mb-2">
       <FontAwesomeIcon
