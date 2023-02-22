@@ -3,7 +3,9 @@ import client from "./client";
 
 const builder = imageUrlBuilder(client);
 
-export async function getAllBlogs(offset = 0) {
+export async function getAllBlogs(params) {
+  const offset = params?.offset || 0;
+  console.log(offset);
   return await client.fetch(`*[_type == "blog"] | order(date desc) {
     title,
     subtitle,
@@ -14,7 +16,7 @@ export async function getAllBlogs(offset = 0) {
       name,
       "avatar": avatar.asset->url
     },
-  } [${offset}...${offset + 10}]`);
+  } [${offset}...${offset + 3}]`);
 }
 
 export async function getBlogBySlug(slug) {

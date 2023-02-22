@@ -1,15 +1,23 @@
-import { Row, Col } from "react-bootstrap";
+import { Row, Button } from "react-bootstrap";
 import Layout from "@/components/Layout";
 import Intro from "@/components/Intro";
-import ListItem from "@/components/ListItem";
-import Item from "@/components/Item";
+
 import { getAllBlogs } from "@/lib/api";
 import FilteringMenu from "@/components/FilteringMenu";
 import { useState } from "react";
-import { useGetBlogs } from "@/actions";
+import { useGetBlogsPages } from "@/actions/pagination";
 
 export default function Home({ blogs }) {
   const [filter, setFilter] = useState({ view: { list: 0 } });
+
+  // isLoadingMore: is true whenever we are making request to fetch data
+  // isReachingEnd: is true when we loaded all of the data, data is empty (empty array)
+  //loadMore: to load more data
+  const { pages, isLoadingMore, isReachingEnd, loadMore } = useGetBlogsPages({
+    blogs,
+    filter,
+  });
+
   return (
     <Layout>
       <Intro />
@@ -18,9 +26,21 @@ export default function Home({ blogs }) {
         onChange={(option, value) => setFilter({ ...filter, [option]: value })}
       />
       <hr />
-      <Row className="mb-5">
-        
-      </Row>
+      <Row className="mb-5">{pages}</Row>
+      <div style={{ textAlign: "center" }}>
+        <Button
+          size="lg"
+          variant="outline-secondary"
+          onClick={loadMore}
+          disabled={isReachingEnd || isLoadingMore}
+        >
+          {isLoadingMore
+            ? "..."
+            : isReachingEnd
+            ? "No more blogs"
+            : "More Blogs"}
+        </Button>
+      </div>
     </Layout>
   );
 }
