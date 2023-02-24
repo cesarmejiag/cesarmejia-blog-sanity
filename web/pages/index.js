@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { Row, Button } from "react-bootstrap";
+
 import Layout from "@/components/Layout";
 import Intro from "@/components/Intro";
+import FilteringMenu from "@/components/FilteringMenu";
 
 import { getAllBlogs } from "@/lib/api";
-import FilteringMenu from "@/components/FilteringMenu";
-import { useState } from "react";
 import { useGetBlogsPages } from "@/actions/pagination";
 
 export default function Home({ blogs }) {
@@ -12,7 +13,7 @@ export default function Home({ blogs }) {
 
   // isLoadingMore: is true whenever we are making request to fetch data
   // isReachingEnd: is true when we loaded all of the data, data is empty (empty array)
-  //loadMore: to load more data
+  // loadMore: to load more data
   const { pages, isLoadingMore, isReachingEnd, loadMore } = useGetBlogsPages({
     blogs,
     filter,
@@ -49,7 +50,7 @@ export default function Home({ blogs }) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps() {
-  const blogs = await getAllBlogs();
+  const blogs = await getAllBlogs({ offset: 0 });
   return {
     props: {
       blogs,

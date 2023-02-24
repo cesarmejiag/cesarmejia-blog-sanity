@@ -22,12 +22,10 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
           return filter.view.list ? (
             <Col key={slug} md="10">
               <ListItem
-                slug={slug}
                 author={author}
                 title={title}
                 subtitle={subtitle}
                 date={date}
-                coverImage={coverImage}
                 link={{
                   href: "/blogs/[slug]",
                   as: `/blogs/${slug}`,

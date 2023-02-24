@@ -2,11 +2,9 @@ import { Card } from "react-bootstrap";
 import Link from "next/link";
 
 const ListItem = ({
-  slug,
   title,
   subtitle,
   date,
-  coverImage,
   author,
   link,
 }) => {

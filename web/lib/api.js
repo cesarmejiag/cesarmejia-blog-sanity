@@ -3,9 +3,7 @@ import client from "./client";
 
 const builder = imageUrlBuilder(client);
 
-export async function getAllBlogs(params) {
-  const offset = params?.offset || 0;
-  console.log(offset);
+export async function getAllBlogs({ offset } = { offset: 0 }) {
   return await client.fetch(`*[_type == "blog"] | order(date desc) {
     title,
     subtitle,
