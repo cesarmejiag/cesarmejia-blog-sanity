@@ -1,21 +1,59 @@
 import { useState } from "react";
-import { Row, Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
 import Layout from "@/components/Layout";
 import Intro from "@/components/Intro";
 import FilteringMenu from "@/components/FilteringMenu";
+import ListItem from "@/components/ListItem";
+import Item from "@/components/Item";
+import ItemBlank from "@/components/ItemBlank";
+import ListItemBlank from "@/components/ListItemBlank";
 
 import { getAllBlogs } from "@/lib/api";
 import { useGetBlogsPages } from "@/actions/pagination";
 
-export default function Home({ blogs }) {
-  const [filter, setFilter] = useState({ view: { list: 0 } });
+export const BlogList = ({ data, filter }) => {
+  return data.map((page) =>
+    page.map(({ title, subtitle, date, coverImage, slug, author }) => {
+      return filter.view.list ? (
+        <Col key={slug} md="10">
+          <ListItem
+            author={author}
+            title={title}
+            subtitle={subtitle}
+            date={date}
+            link={{
+              href: "/blogs/[slug]",
+              as: `/blogs/${slug}`,
+            }}
+          />
+        </Col>
+      ) : (
+        <Col key={slug} md="4">
+          <Item
+            slug={slug}
+            author={author}
+            title={title}
+            subtitle={subtitle}
+            date={date}
+            coverImage={coverImage}
+            link={{
+              href: "/blogs/[slug]",
+              as: `/blogs/${slug}`,
+            }}
+          />
+        </Col>
+      );
+    })
+  );
+};
 
-  // isLoadingMore: is true whenever we are making request to fetch data
-  // isReachingEnd: is true when we loaded all of the data, data is empty (empty array)
-  // loadMore: to load more data
-  const { pages, isLoadingMore, isReachingEnd, loadMore } = useGetBlogsPages({
-    blogs,
+export default function Home({ blogs }) {
+  const [filter, setFilter] = useState({
+    view: { list: 0 },
+    date: { asc: 0 },
+  });
+  const { data, size, setSize, hitEnd, isValidating } = useGetBlogsPages({
     filter,
   });
 
@@ -27,19 +65,31 @@ export default function Home({ blogs }) {
         onChange={(option, value) => setFilter({ ...filter, [option]: value })}
       />
       <hr />
-      <Row className="mb-5">{pages}</Row>
+      <Row className="mb-5">
+        <BlogList data={data || [blogs]} filter={filter} />
+        {isValidating &&
+          Array(3)
+            .fill(0)
+            .map((_, i) =>
+              filter.view.list ? (
+                <Col key={`${i}-item`} md="10">
+                  <ListItemBlank />
+                </Col>
+              ) : (
+                <Col key={`${i}-item`} md="4">
+                  <ItemBlank />
+                </Col>
+              )
+            )}
+      </Row>
       <div style={{ textAlign: "center" }}>
         <Button
           size="lg"
           variant="outline-secondary"
-          onClick={loadMore}
-          disabled={isReachingEnd || isLoadingMore}
+          onClick={() => setSize(size + 1)}
+          disabled={hitEnd}
         >
-          {isLoadingMore
-            ? "..."
-            : isReachingEnd
-            ? "No more blogs"
-            : "More Blogs"}
+          Load More
         </Button>
       </div>
     </Layout>
@@ -50,7 +100,7 @@ export default function Home({ blogs }) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps() {
-  const blogs = await getAllBlogs({ offset: 0 });
+  const blogs = await getAllBlogs({ offset: 0, date: "desc" });
   return {
     props: {
       blogs,

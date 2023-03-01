@@ -1,65 +1,31 @@
-import { Col } from "react-bootstrap";
-import ListItem from "@/components/ListItem";
-import Item from "@/components/Item";
-import { useSWRPages } from "swr";
-import { useGetBlogs } from "./";
+import useSWRInfinite from "swr/infinite";
+import { getBlogs } from "./";
 
-export const useGetBlogsPages = ({ blogs, filter }) => {
-  return useSWRPages(
-    "index-page",
-    ({ offset, withSWR }) => {
-      let initialData = !offset && blogs;
-      const { data: paginatedBlogs } = withSWR(
-        useGetBlogs({ offset }, initialData)
-      );
-
-      if (!paginatedBlogs) {
-        return "Loading...";
+export const useGetBlogsPages = ({ filter }) => {
+  const results = useSWRInfinite(
+    (index, previousPageData) => {
+      if (index === 0) {
+        return `/api/blogs?date=${filter.date.asc ? "asc" : "desc"}`;
       }
 
-      return paginatedBlogs.map(
-        ({ title, subtitle, date, coverImage, slug, author }) => {
-          return filter.view.list ? (
-            <Col key={slug} md="10">
-              <ListItem
-                author={author}
-                title={title}
-                subtitle={subtitle}
-                date={date}
-                link={{
-                  href: "/blogs/[slug]",
-                  as: `/blogs/${slug}`,
-                }}
-              />
-            </Col>
-          ) : (
-            <Col key={slug} md="4">
-              <Item
-                slug={slug}
-                author={author}
-                title={title}
-                subtitle={subtitle}
-                date={date}
-                coverImage={coverImage}
-                link={{
-                  href: "/blogs/[slug]",
-                  as: `/blogs/${slug}`,
-                }}
-              />
-            </Col>
-          );
-        }
-      );
-    },
-    // Here you will compute offset that will get passed into preview
-    // SWR: data you will get from 'withSWR' function
-    // index: number of current page
-    (SWR, index) => {
-      if (SWR.data && SWR.data.length === 0) {
+      if (!previousPageData.length) {
         return null;
       }
-      return (index + 1) * 3;
+
+      return `/api/blogs?offset=${index * 6}&date=${
+        filter.date.asc ? "asc" : "desc"
+      }`;
     },
-    [filter]
+    getBlogs,
+    { persistSize: true }
   );
+
+  let hitEnd = false;
+  const { data } = results;
+
+  if (data) {
+    hitEnd = data[data.length - 1].length === 0;
+  }
+
+  return { ...results, hitEnd };
 };
