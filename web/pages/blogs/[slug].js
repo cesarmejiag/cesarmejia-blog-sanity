@@ -1,13 +1,25 @@
 import { Row, Col } from "react-bootstrap";
+// import { useRouter } from "next/router";
+// import Error from "next/error";
 import Layout from "@/components/Layout";
 import PreviewAlert from "@/components/PreviewAlert";
 import BlogHeader from "@/components/BlogHeader";
 import BlogContent from "@/components/BlogContent";
-import { getAllBlogs, getBlogBySlug } from "@/lib/api";
+import { getAllBlogs, getBlogBySlug, getPaginatedBlogs } from "@/lib/api";
 import { urlFor } from "@/lib/api";
 import moment from "moment";
 
 const BlogDetail = ({ blog }) => {
+  /* const { isFallback } = useRouter();
+  
+  if (!isFallback && !blog?.slug) {
+    return <Error statusCode={404}></Error>;
+  }
+
+  if (isFallback) {
+    return <Layout>Loading...</Layout>;
+  } */
+
   return (
     <Layout className="blog-detail-page">
       <Row>
@@ -39,10 +51,12 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const blogs = await getAllBlogs();
+  // const blogs = await getPaginatedBlogs();
   // paths: [{ params: { slug: "my-first-blog" } }, ...]
   return {
     paths: blogs.map((blog) => ({ params: { slug: blog.slug } })),
     fallback: false, // can also be true or 'blocking'
+    // fallback: true,
   };
 }
 

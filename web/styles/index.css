@@ -34,6 +34,10 @@ html, body {
     padding-bottom: 40px;
 }
 
+.card.fj-card .card-body-wrapper.no-image {
+    min-height: auto;
+}
+
 .card.fj-card .card-body {
     padding: 15px 0px 0px;
 }
@@ -137,7 +141,7 @@ html, body {
 }
 
 .fj-navbar.fj-nav-base .fj-navbar-brand a {
-    color: black;
+    /* color: black; */
     font-weight: 900;
 }
 
@@ -274,6 +278,10 @@ html, body {
 .day-night-toggle.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
     background-color: black;
 }
+
+.day-night-toggle.react-toggle .react-toggle-thumb {
+    border-color: black;
+} 
 
 .day-night-toggle.react-toggle .react-toggle-track {
     background-color: black;

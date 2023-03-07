@@ -9,11 +9,11 @@ export default function BlogHeader({
     <div className="blog-detail-header">
       <p className="lead mb-0">
         <img
-          src={author?.avatar}
+          src={author.avatar}
           className="rounded-circle mr-3"
           height="50px"
           width="50px"
-          alt="avatar"
+          alt={`${author.name} avatar`}
         />
         {author?.name}
         {", "} {date}

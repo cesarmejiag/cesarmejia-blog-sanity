@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import moment from "moment";
 
 import Layout from "@/components/Layout";
 import Intro from "@/components/Intro";
@@ -9,7 +10,7 @@ import Item from "@/components/Item";
 import ItemBlank from "@/components/ItemBlank";
 import ListItemBlank from "@/components/ListItemBlank";
 
-import { getAllBlogs } from "@/lib/api";
+import { getPaginatedBlogs } from "@/lib/api";
 import { useGetBlogsPages } from "@/actions/pagination";
 
 export const BlogList = ({ data, filter }) => {
@@ -21,7 +22,7 @@ export const BlogList = ({ data, filter }) => {
             author={author}
             title={title}
             subtitle={subtitle}
-            date={date}
+            date={moment(date).format("LLL")}
             link={{
               href: "/blogs/[slug]",
               as: `/blogs/${slug}`,
@@ -35,7 +36,7 @@ export const BlogList = ({ data, filter }) => {
             author={author}
             title={title}
             subtitle={subtitle}
-            date={date}
+            date={moment(date).format("LLL")}
             coverImage={coverImage}
             link={{
               href: "/blogs/[slug]",
@@ -100,7 +101,7 @@ export default function Home({ blogs }) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps() {
-  const blogs = await getAllBlogs({ offset: 0, date: "desc" });
+  const blogs = await getPaginatedBlogs({ offset: 0, date: "desc" });
   return {
     props: {
       blogs,

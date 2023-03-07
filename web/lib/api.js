@@ -3,7 +3,21 @@ import client from "./client";
 
 const builder = imageUrlBuilder(client);
 
-export async function getAllBlogs(
+export async function getAllBlogs() {
+  return await client.fetch(`*[_type == "blog"] | order(date desc) {
+    title,
+    subtitle,
+    "slug": slug.current,
+    coverImage,
+    date,
+    "author": author->{
+      name,
+      "avatar": avatar.asset->url
+    },
+  }`);
+}
+
+export async function getPaginatedBlogs(
   { offset, date } = { offset: 0, date: "desc" }
 ) {
   return await client.fetch(`*[_type == "blog"] | order(date ${date}) {
@@ -20,9 +34,18 @@ export async function getAllBlogs(
 }
 
 export async function getBlogBySlug(slug) {
-  return await client.fetch(`*[_type == "blog" && slug.current == $slug][0]`, {
-    slug,
-  });
+  return await client.fetch(
+    `
+    *[_type == "blog" && slug.current == $slug] {
+      ...,
+      "author": author-> {
+        name,
+        "avatar": avatar.asset->url
+      }
+    }[0]
+  `,
+    { slug }
+  );
 }
 
 export function urlFor(source) {
