@@ -9,7 +9,7 @@ const Intro = () => {
             roundedCircle
             width={64}
             height={64}
-            className="mr-3"
+            className="mr-3 fit-cover"
             src="https://portal.socio.gs/html/Photosnew/92955.jpg"
             alt="Generic placeholder"
           />

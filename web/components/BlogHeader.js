@@ -10,7 +10,7 @@ export default function BlogHeader({
       <p className="lead mb-0">
         <img
           src={author.avatar}
-          className="rounded-circle mr-3"
+          className="rounded-circle mr-3 fit-cover"
           height="50px"
           width="50px"
           alt={`${author.name} avatar`}

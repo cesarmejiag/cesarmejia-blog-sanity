@@ -7,6 +7,10 @@ html, body {
     background-color: #f4f7f9;
 }
 
+.fit-cover {
+    object-fit: cover;
+}
+
 .clickable {
     cursor: pointer;
 }
@@ -68,6 +72,7 @@ html, body {
     top: calc(-1 * (var(--size) / 2));
     width: var(--size);
     height: var(--size);
+    object-fit: cover;
 }
 
 .card.fj-card .card-button {
@@ -281,7 +286,7 @@ html, body {
 
 .day-night-toggle.react-toggle .react-toggle-thumb {
     border-color: black;
-} 
+}
 
 .day-night-toggle.react-toggle .react-toggle-track {
     background-color: black;
